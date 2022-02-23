@@ -1,0 +1,36 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/hx/Desktop/thirdparty/STDR/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/amcl/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/base_local_planner/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/carrot_planner/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/clear_costmap_recovery/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/costmap_2d/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/dwa_local_planner/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/global_planner/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/map_server/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/move_base/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/move_slow_and_clear/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/nav_core/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/navfn/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/rotate_recovery/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/stdr_simulator/stdr_gui/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/stdr_simulator/stdr_parser/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/stdr_simulator/stdr_robot/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/stdr_simulator/stdr_samples/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/stdr_simulator/stdr_server/include/**",
+        "/home/hx/Desktop/thirdparty/STDR/src/navigation/voxel_grid/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

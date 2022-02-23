@@ -1,0 +1,77 @@
+<!--
+  Copyright: 2016-2018 ROS小课堂 www.corvin.cn
+  Author: corvin
+  Description:
+    启动amcl节点，这样就可以在全局地图上对机器人进行定位了。
+  History:
+    20180528: initial this file.
+-->
+<launch>
+  <!--startup stdr simulator with robot0 -->
+  <include file="$(find stdr_launchers)/launch/server_with_map_and_gui_plus_robot.launch"/>
+ 
+  <!-- startup rviz node to show amcl process -->
+  <node name="amcl_rviz" type="rviz" pkg="rviz" args="-d $(find stdr_amcl)/rviz/stdr_amcl_config.rviz" />
+ 
+  <!-- load map -->
+  <node name="stdr_map_server" pkg="map_server" type="map_server" args="$(find stdr_gmapping)/maps/mymap.yaml" >
+    <remap from="map" to="/amcl/map" />
+  </node>
+ 
+  <!-- Run amcl -->
+  <node pkg="amcl" type="amcl" name="stdr_amcl_node" output="screen">
+    <!-- amcl default subscribe scan topic, now remap to /robot0/laser_0 -->
+    <remap from="scan" to="/robot0/laser_0"/>
+ 
+    <!-- amcl default subscribe map topic, now remap to /amcl/map -->
+    <remap from="map" to="/amcl/map" />
+ 
+    <!-- overall filter parameters -->
+    <param name="min_particles" value="400"/>
+    <param name="max_particles" value="5000"/>
+    <param name="kld_err"       value="0.01"/>
+    <param name="kld_z"         value="0.99"/>
+    <param name="update_min_d"  value="0.05"/>
+    <param name="update_min_a"  value="0.05"/>
+    <param name="resample_interval"   value="2"/>
+    <param name="transform_tolerance" value="0.5"/>
+    <param name="recovery_alpha_slow" value="0.001"/>
+    <param name="recovery_alpha_fast" value="0.1"/>
+    <!-- set particles init pose to robot pose -->
+    <param name="initial_pose_x" value="1.0"/>
+    <param name="initial_pose_y" value="2.0"/>
+    <param name="initial_pose_a" value="0.0"/>
+    <param name="initial_cov_xx" value="0.25"/>
+    <param name="initial_cov_yy" value="0.25"/>
+    <param name="initial_cov_aa" value="0.068538917"/> <!-- pi/12 * pi/12 -->
+    <param name="gui_publish_rate" value="-1.0"/>
+    <param name="save_pose_rate"   value="0.5"/>
+    <param name="use_map_topic"    value="true"/>
+    <param name="first_map_only"   value="false"/>
+ 
+    <!-- laser model parameters -->
+    <param name="laser_min_range" value="0.05"/>
+    <param name="laser_max_range" value="4.0"/>
+    <param name="laser_max_beams" value="60"/>
+    <param name="laser_z_hit"     value="0.95"/>
+    <param name="laser_z_short"   value="0.1"/>
+    <param name="laser_z_max"     value="0.05"/>
+    <param name="laser_z_rand"    value="0.05"/>
+    <param name="laser_sigma_hit"    value="0.2"/>
+    <param name="laser_lambda_short" value="0.1"/>
+    <param name="laser_likelihood_max_dist" value="2.0"/>
+    <param name="laser_model_type" value="likelihood_field"/>
+ 
+    <!-- Odometry model parameters -->
+    <param name="odom_model_type" value="diff"/>
+    <param name="odom_alpha1"     value="0.03"/>
+    <param name="odom_alpha2"     value="0.03"/>
+    <param name="odom_alpha3"     value="0.03"/>
+    <param name="odom_alpha4"     value="0.03"/>
+    <param name="odom_alpha5"     value="0.0"/> <!--only used if model is "omni"-->
+    <param name="odom_frame_id"   value="/map_static"/>
+    <param name="base_frame_id"   value="/robot0"/>
+    <param name="global_frame_id" value="/map"/>
+    <param name="tf_broadcast"    value="true"/>
+  </node>
+</launch>

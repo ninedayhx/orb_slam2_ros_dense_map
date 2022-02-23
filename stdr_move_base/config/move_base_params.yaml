@@ -1,0 +1,31 @@
+#FileName: move_base_params.yaml
+#Copyright: 2016-2018 ROS小课堂www.corvin.cn
+#Author: corvin
+#Description:
+# move_base软件包的通用配置参数,现在依次解释每个参数意义:
+#   shutdown_costmaps:当move_base在不活动状态时,是否关掉costmap.
+#   controller_frequency:向底盘控制移动话题cmd_vel发送命令的频率.
+#   controller_patience:在空间清理操作执行前,控制器花多长时间等有效控制下发.
+#   planner_frequency:全局规划操作的执行频率.如果设置为0.0,则全局规划器仅
+#       在接收到新的目标点或者局部规划器报告路径堵塞时才会重新执行规划操作.
+#   planner_patience:在空间清理操作执行前,留给规划器多长时间来找出一条有效规划.
+#   oscillation_timeout:执行修复机制前,允许振荡的时长.
+#   oscillation_distance:来回运动在多大距离以上不会被认为是振荡.
+#   base_local_planner:指定用于move_base的局部规划器插件名称.
+#   base_global_planner:指定用于move_base的全局规划器插件名称.
+#History:
+# 20180726: initial this comment.
+#
+shutdown_costmaps: false
+ 
+controller_frequency: 5.0
+controller_patience: 3.0
+ 
+planner_frequency: 1.0
+planner_patience: 5.0
+ 
+oscillation_timeout: 8.0
+oscillation_distance: 0.3
+ 
+base_local_planner: "dwa_local_planner/DWAPlannerROS"
+base_global_planner: "global_planner/GlobalPlanner"

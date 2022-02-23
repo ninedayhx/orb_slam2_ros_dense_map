@@ -1,0 +1,45 @@
+DWAPlannerROS:
+# Robot Configuration Parameters - stdr robot
+  acc_lim_x: 0.3  # maximum is theoretically 2.0
+  acc_lim_y: 0.3  # diff drive robot
+  acc_lim_th: 0.1
+ 
+  max_trans_vel: 0.3 #choose slightly less than the base's capability
+  min_trans_vel: 0.1 #this is the min trans velocity when there is negligible rotational velocity
+ 
+  max_vel_x: 0.3
+  min_vel_x: -0.1
+  max_vel_y: 0.0  #diff drive robot,don't need set vel_y
+  min_vel_y: 0.0
+ 
+  max_rot_vel: 0.5  #choose slightly less than the base's capability
+  min_rot_vel: 0.1  #this is the min angular velocity when there is negligible translational velocity
+ 
+# Goal Tolerance Parameters
+  yaw_goal_tolerance: 0.1  # 0.1 rad = 5.7 degree
+  xy_goal_tolerance: 0.12
+  latch_xy_goal_tolerance: false
+ 
+# Forward Simulation Parameters
+  sim_time: 2.0    # 1.7
+  sim_granularity: 0.025
+  vx_samples: 6    # default 3
+  vy_samples: 1    # diff drive robot, there is only one sample
+  vth_samples: 20  # 20
+  controller_frequency: 5.0
+ 
+# Trajectory Scoring Parameters
+  path_distance_bias: 90.0      # 32.0
+  goal_distance_bias: 24.0      # 24.0
+  occdist_scale: 0.3            # 0.01
+  forward_point_distance: 0.325 # 0.325
+  stop_time_buffer: 0.2         # 0.2
+  scaling_speed: 0.20           # 0.25
+  max_scaling_factor: 0.2       # 0.2
+  publish_cost_grid: false
+ 
+# Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.05  # default 0.05
+ 
+# Global Plan Parameters
+  prune_plan: true
